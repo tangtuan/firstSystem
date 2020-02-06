@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CDN</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1, maximum-scale=1, user-scalable=no">
+	
+</head>
+<body>
+	<button id='post-btn'>post</button>
+	<button id='get-btn'>get</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+<script>
+	var url = 'http://172.18.34.66:8415/mock/cdn/getworkList.html?pageNum=1&pageSize=10&status=0'; //url地址
+	$('#post-btn').on('click', function(){
+		ajaxData(url, 'post');
+	});
+	$('#get-btn').on('click', function(){
+		ajaxData(url, 'get');
+	});
+	
+	function ajaxData(url, type, success) {
+		$.ajax({
+			url: url,
+			traditional: true,
+			dataType: 'json',
+			type: type,
+			data:{}
+		}).then(function (ret) {
+			if (success) {
+				success(ret);
+			}
+		});
+	}
+</script>
+</html>
